@@ -1,9 +1,7 @@
 import telebot
-import os
+from config import TOKEN, ADMIN_ID
 from runner import run_python
 import time
-TOKEN = os.getenv("TELEGRAM_TOKEN")
-admin_id =8701726368
 bot = telebot.TeleBot(TOKEN)
 last_run = 0
 def file_exists_exact(filename):
@@ -11,7 +9,7 @@ def file_exists_exact(filename):
     return filename in files
 @bot.message_handler(commands=['run'])
 def run_file(message):
-    if message.chat.id != admin_id:
+    if message.chat.id != ADMIN_ID:
        return
 
     global last_run
@@ -21,13 +19,21 @@ def run_file(message):
     last_run = time.time()
     try:
         file_name = message.text.split()[1]
+        if not file_name.endswith(".py"):
+            bot.reply_to(
+                message,
+                "File không hợp lệ, chỉ file .py mới được chạy thôi"
+        )
+        return
+        if not file_exists_exact(file_name):
+            bot.reply_to(
+            message,
+            "File không tồn  tại, kiểm  tra chữ hoa chữ thường đi"
+        )
+        return
+
         out, err = run_python(file_name)
 
-        if not file_name.endswith(".py"):
-            bot.reply_to(message,"File không hợp lệ, chỉ file .py mới được chạy thôi")
-        if not file_exists_exact(file_name):
-            bot.reply_to(message, "File không tồn  tại, kiểm  tra chữ hoa chữ thường đi")
-            return
         if err:
 
             bot.reply_to(message, err[-3000:])
