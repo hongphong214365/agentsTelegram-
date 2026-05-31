@@ -14,7 +14,6 @@ def run_file(message):
 
     global last_run
     if time.time() - last_run < 15:
-        bot.reply_to(message, "Từ từ bìn tĩnh chờ một tí")
         return
     last_run = time.time()
     try:
