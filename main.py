@@ -21,13 +21,13 @@ def run_file(message):
         if not file_name.endswith(".py"):
             bot.reply_to(
                 message,
-                "File không hợp lệ, chỉ file .py mới được chạy thôi"
+                "File không hợp lệ, chỉ file .py mới được phép chạy"
         )
         return
         if not file_exists_exact(file_name):
             bot.reply_to(
             message,
-            "File không tồn  tại, kiểm  tra chữ hoa chữ thường đi"
+            "Không tìm thấy file. Hãy kiểm tra lại tên file và chữ hoa/chữ thường."
         )
         return
 
@@ -41,6 +41,5 @@ def run_file(message):
             bot.reply_to(message, out[-3000:])
     except Exception as e:
         bot.reply_to(message, str(e))
-
-print("bot đang chạy...")
+print("Telegram agent started successfully.")
 bot.infinity_polling()
