@@ -2,11 +2,15 @@ import telebot
 from config import TOKEN, ADMIN_ID
 from runner import run_python
 import time
+import os
 bot = telebot.TeleBot(TOKEN)
 last_run = 0
 def file_exists_exact(filename):
     files = os.listdir(".")
     return filename in files
+@ bot.message_handler(commands=["ping"])
+def ping(message):
+    bot.reply_to(message, "online")
 @bot.message_handler(commands=['run'])
 def run_file(message):
     if message.chat.id != ADMIN_ID:
