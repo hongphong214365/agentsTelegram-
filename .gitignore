@@ -1,4 +1,8 @@
+# python
 __pycache__/
 *.pyc
-*.swp
+# runtime
+
 log.txt
+*.log
+temp/

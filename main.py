@@ -1,6 +1,7 @@
 import telebot
 from config import TOKEN, ADMIN_ID
 from runner import run_python
+from log import logger
 import time
 import os
 bot = telebot.TeleBot(TOKEN)
@@ -44,6 +45,8 @@ def run_file(message):
         else:
             bot.reply_to(message, out[-3000:])
     except Exception as e:
+        logger.exception("Unexpected error")
         bot.reply_to(message, str(e))
 print("Telegram agent started successfully.")
+logger.info("bot started")
 bot.infinity_polling()
