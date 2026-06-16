@@ -13,6 +13,21 @@ def file_exists_exact(filename):
 @ bot.message_handler(commands=["ping"])
 def ping(message):
     bot.reply_to(message, "online")
+
+# Lệnh start: Chào mừng và hướng dẫn sử dụng.
+@bot.message_handler(commands=["start"])
+def start(message):
+    if message.chat.id != ADMIN_ID:
+        return
+    bot.reply_to(
+        message,
+        "Chào mừng! Đây là Agent Bot điều khiển máy tính từ xa.\n\n"
+        "Các lệnh hỗ trợ:\n"
+        "/ping - Kiểm tra nhanh kết nối\n"
+        "/run <tên_file.py> - Thực thi một file Python\n"
+        "/start - Hiển thị hướng dẫn này"
+    )
+
 # Lệnh run: Chạy file python, hàm cốt lõi của bot.
 @bot.message_handler(commands=['run'])
 def run_file(message):
@@ -40,15 +55,16 @@ def run_file(message):
             bot.reply_to(
                 message,
                 "File không hợp lệ, chỉ file .py mới được phép chạy"
-        )
-        return
+            )
+            return
+
         # Kiểm tra file tồn tại.
         if not file_exists_exact(file_name):
             bot.reply_to(
-            message,
-            "Không tìm thấy file. Hãy kiểm tra lại tên file và chữ hoa/chữ thường."
-        )
-        return
+                message,
+                "Không tìm thấy file. Hãy kiểm tra lại tên file và chữ hoa/chữ thường."
+            )
+            return
 
         out, err = run_python(file_name)
 
