@@ -11,6 +11,14 @@ Simple Telegram bot to run Python files remotely and return output or errors.
 * Restrict access to a specific Telegram account using an admin ID.
 * Easy configuration using environment variables.
 
+## Commands
+
+The bot supports the following commands (most actions are restricted to the configured `TELEGRAM_ADMIN_ID`):
+
+* `/start` - Displays a welcome message and a list of available commands (Admin only).
+* `/ping` - Checks if the bot is online (responds with "online", open to all).
+* `/run <file_name.py>` - Executes a Python file in the project folder and returns the output or error (Admin only).
+
 ## Requirements
 
 * Python 3.10 or newer
