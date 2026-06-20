@@ -1,77 +1,79 @@
-
 # agentsTelegram-
 
-Simple Telegram bot to run Python files remotely and return output or errors.
+Bot Telegram đơn giản để chạy các tệp Python từ xa và trả về kết quả đầu ra hoặc thông báo lỗi.
 
-## Features
+[english](README_EN.md)
 
-* Run Python files remotely through Telegram.
-* Receive program output directly in Telegram.
-* Receive error messages if execution fails.
-* Restrict access to a specific Telegram account using an admin ID.
-* Easy configuration using environment variables.
+## Tính năng
 
-## Commands
+* Chạy các tệp Python từ xa thông qua Telegram.
+* Nhận kết quả đầu ra của chương trình trực tiếp trên Telegram.
+* Nhận thông báo lỗi nếu quá trình thực thi thất bại.
+* Giới hạn quyền truy cập vào một tài khoản Telegram cụ thể bằng admin ID.
+* Cấu hình dễ dàng bằng cách sử dụng các biến môi trường.
 
-The bot supports the following commands (most actions are restricted to the configured `TELEGRAM_ADMIN_ID`):
+## Các lệnh
 
-* `/start` - Displays a welcome message and a list of available commands (Admin only).
-* `/ping` - Checks if the bot is online (responds with "online", open to all).
-* `/run <file_name.py>` - Executes a Python file in the project folder and returns the output or error (Admin only).
+Bot hỗ trợ các lệnh sau (hầu hết các hành động chỉ giới hạn cho `TELEGRAM_ADMIN_ID` đã được cấu hình):
 
-## Requirements
+* `/start` - Hiển thị tin nhắn chào mừng và danh sách các lệnh khả dụng (Chỉ dành cho Admin).
+* `/ping` - Kiểm tra xem bot có trực tuyến không (phản hồi bằng "online", mở cho tất cả mọi người).
+* `/run <file_name.py>` - Thực thi một tệp Python trong thư mục dự án và trả về kết quả đầu ra hoặc lỗi (Chỉ dành cho Admin).
+* `/log` - Hiển thị 20 dòng cuối cùng của log bot (Chỉ dành cho Admin).
 
-* Python 3.10 or newer
-* Telegram account
+## Yêu cầu hệ thống
+
+* Python 3.10 trở lên
+* Tài khoản Telegram
 * Telegram Bot Token
 
-## Getting a Telegram Bot Token
+## Cách lấy Telegram Bot Token
 
-1. Open Telegram.
-2. Search for **@BotFather**.
-3. Send the command:
+1. Mở Telegram.
+2. Tìm kiếm **@BotFather**.
+3. Gửi lệnh:
 
 ```text
 /newbot
 ```
 
-4. Follow the instructions:
+4. Làm theo hướng dẫn:
 
-   * Enter a bot name.
-   * Enter a unique username ending with `bot`.
+   * Nhập tên cho bot.
+   * Nhập một username duy nhất kết thúc bằng `bot`.
 
-Example:
+Ví dụ:
 
 ```text
 My Python Agent
 my_python_agent_bot
 ```
 
-5. BotFather will send you a token similar to:
+5. BotFather sẽ gửi cho bạn một token tương tự như:
 
 ```text
 1234567890:AAExampleTokenHere
 ```
 
-Copy this token. You will need it later.
+Hãy sao chép token này. Bạn sẽ cần nó sau.
 
-## Getting Your Telegram Chat ID
+## Cách lấy Telegram Chat ID của bạn
 
-### Method 1: Using @userinfobot
+### Cách 1: Sử dụng @userinfobot
 
-1. Search for **@userinfobot** on Telegram.
-2. Press Start.
-3. The bot will display information including your ID.
+1. Tìm kiếm **@userinfobot** trên Telegram.
+2. Nhấn Start.
+3. Bot sẽ hiển thị thông tin bao gồm ID của bạn.
 
-Example:
+Ví dụ:
 
 ```text
 Id: 123456789
 ```
 
-Use this number as your admin ID.
+Sử dụng con số này làm admin ID của bạn.
 
-## Configure Environment Variables
+## Cấu hình các biến môi trường
 
 ### Windows CMD
 
@@ -94,78 +96,78 @@ export TELEGRAM_TOKEN="1234567890:AAExampleTokenHere"
 export TELEGRAM_ADMIN_ID="123456789"
 ```
 
-Important:
+Quan trọng:
 
-The variable names must match exactly:
+Tên các biến môi trường phải khớp chính xác:
 
 ```text
 TELEGRAM_TOKEN
 TELEGRAM_ADMIN_ID
 ```
 
-If your code reads these names, users only need to create the variables with the same names and the bot will work without editing the source code.
+Nếu mã nguồn của bạn đọc các tên này, người dùng chỉ cần tạo các biến môi trường với cùng tên và bot sẽ hoạt động mà không cần chỉnh sửa mã nguồn.
 
-## Install Dependencies
+## Cài đặt thư viện phụ thuộc
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Or install manually if no requirements file is provided.
+Hoặc cài đặt thủ công nếu không có tệp requirements.
 ```bash
 pip install pyTelegramBotAPI
 ```
 
-## Running the Bot
+## Chạy Bot
 
-Open a terminal in the project folder and run:
+Mở terminal trong thư mục dự án và chạy:
 
 ```bash
 python main.py
 ```
 
-If everything is configured correctly, the bot should start and wait for commands.
+Nếu mọi thứ được cấu hình chính xác, bot sẽ khởi động và đợi lệnh.
 
-Example:
+Ví dụ:
 
 ```text
 Bot started successfully.
 Waiting for Telegram messages...
 ```
 
-## Troubleshooting
+## Khắc phục sự cố
 
-### TELEGRAM_TOKEN is missing
+### Thiếu TELEGRAM_TOKEN
 
-Make sure the environment variable exists:
+Hãy chắc chắn rằng biến môi trường tồn tại:
 
 ```cmd
 echo %TELEGRAM_TOKEN%
 ```
 
-### TELEGRAM_ADMIN_ID is missing
+### Thiếu TELEGRAM_ADMIN_ID
 
-Check:
+Kiểm tra:
 
 ```cmd
 echo %TELEGRAM_ADMIN_ID%
 ```
 
-### Bot does not respond
+### Bot không phản hồi
 
-* Verify the token is correct.
-* Make sure you started a chat with the bot.
-* Make sure your Telegram ID matches `TELEGRAM_ADMIN_ID`.
-* Check the terminal for error messages.
+* Xác minh xem token đã chính xác chưa.
+* Đảm bảo rằng bạn đã bắt đầu cuộc trò chuyện với bot.
+* Đảm bảo rằng Telegram ID của bạn khớp với `TELEGRAM_ADMIN_ID`.
+* Kiểm tra terminal để xem các thông báo lỗi.
 
-## Security Notes
+## Lưu ý bảo mật
 
-Never publish your Telegram Bot Token.
+Không bao giờ công khai Telegram Bot Token của bạn.
 
-Do not commit your token to GitHub.
+Không commit token của bạn lên GitHub.
 
-Use environment variables instead of hardcoding secrets into the source code.
+Sử dụng các biến môi trường thay vì ghi cứng các thông tin nhạy cảm vào mã nguồn.
 
-## License
+## Giấy phép
 
 MIT License
