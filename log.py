@@ -12,9 +12,11 @@ def get_last_logs(lines: int = LOG_LINES) -> str:
             return "Chưa có file log."
         with LOG_FILE.open("r", encoding="utf-8", errors="ignore") as f:
             data = f.readlines()
-        return "".join(data[-lines:])
+            
+        return "".join(data[-lines:]) or "Log hiện tại đang trống."
     except Exception as e:
-        return f"Lỗi khi đọc log: {e}"
+        logger.exception("Lỗi khi đọc log")
+        return f"Đã có lỗi khi đọc log: {e}"
 
 logging.basicConfig(
     filename=str(LOG_FILE),

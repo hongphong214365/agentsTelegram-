@@ -1,10 +1,17 @@
 import subprocess
+import os
 
 def run_python(file_name):
+    env = os.environ.copy()
+    env["PYTHONIOENCODING"] = "utf-8"
+    env["PYTHONUTF8"] = "1"
     result = subprocess.run(
         ["python", file_name],
         capture_output=True,
-        text=True,
-        timeout = 30,
+        encoding="utf-8",
+        errors="replace",
+        env=env,
+        timeout=30,
     )
     return result.stdout, result.stderr
+

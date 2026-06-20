@@ -4,6 +4,8 @@ from runner import run_python
 from log import logger, get_last_logs
 import time
 import os
+from html import escape
+
 bot = telebot.TeleBot(TOKEN)
 last_run = 0
 def file_exists_exact(filename):
@@ -36,7 +38,7 @@ def show_log(message):
     logs = get_last_logs()
     bot.reply_to(
         message,
-        f"<pre>{logs}</pre>",
+        f"<pre>{escape(logs)}</pre>",
         parse_mode="HTML"
     )
 # Lệnh run: Chạy file python, hàm cốt lõi của bot.
@@ -81,10 +83,19 @@ def run_file(message):
 
         if err:
 
-            bot.reply_to(message, err[-3000:])
+            bot.reply_to(
+            message,
+            f"<pre>{escape(err[-3000:])}</pre>",
+            parse_mode="HTML"
+        )
+            
 
         else:
-            bot.reply_to(message, out[-3000:])
+            bot.reply_to(
+            message,
+            F"<pre>{escape(out[-3000:])}</pre>",
+            parse_mode="HTML"
+        )
     except Exception as e:
         logger.exception("Unexpected error")
         bot.reply_to(message, str(e))

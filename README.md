@@ -105,7 +105,6 @@ TELEGRAM_TOKEN
 TELEGRAM_ADMIN_ID
 ```
 
-Nếu mã nguồn của bạn đọc các tên này, người dùng chỉ cần tạo các biến môi trường với cùng tên và bot sẽ hoạt động mà không cần chỉnh sửa mã nguồn.
 
 ## Cài đặt thư viện phụ thuộc
 
@@ -132,7 +131,6 @@ Ví dụ:
 
 ```text
 Bot started successfully.
-Waiting for Telegram messages...
 ```
 
 ## Khắc phục sự cố
