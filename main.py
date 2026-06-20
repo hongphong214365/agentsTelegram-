@@ -25,9 +25,20 @@ def start(message):
         "Các lệnh hỗ trợ:\n"
         "/ping - Kiểm tra nhanh kết nối\n"
         "/run <tên_file.py> - Thực thi một file Python\n"
-        "/start - Hiển thị hướng dẫn này"
+        "/start - Hiển thị hướng dẫn này\n"
+        "/log - Xem 20 dòng log gần nhất"
     )
-
+# Lệnh log, xem 20 dòng  log cuối cùng.
+@bot.message_handler(commands=['log'])
+def show_log(message):
+    if message.chat.id != ADMIN_ID:
+        return
+    logs = get_last_logs()
+    bot.reply_to(
+        message,
+        f"<pre>{logs}</pre>",
+        parse_mode="HTML"
+    )
 # Lệnh run: Chạy file python, hàm cốt lõi của bot.
 @bot.message_handler(commands=['run'])
 def run_file(message):
