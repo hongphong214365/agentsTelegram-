@@ -2,20 +2,17 @@ import telebot
 from config import TOKEN, ADMIN_ID
 from runner import run_python
 from log import logger, get_last_logs
+from handlers import register_handlers
 import time
 import os
 from html import escape
 
 bot = telebot.TeleBot(TOKEN)
+register_handlers(bot)
 last_run = 0
 def file_exists_exact(filename):
     files = os.listdir(".")
     return filename in files
-# Hàm ping: Kiểm tra nhanh xem bot còn chạy không.
-@ bot.message_handler(commands=["ping"])
-def ping(message):
-    bot.reply_to(message, "online")
-
 # Lệnh start: Chào mừng và hướng dẫn sử dụng.
 @bot.message_handler(commands=["start"])
 def start(message):
