@@ -2,7 +2,7 @@ import telebot
 from config import TOKEN, ADMIN_ID
 from runner import run_python
 from log import logger, get_last_logs
-from handlers import register_handlers
+from handlers    import register_handlers
 import time
 import os
 from html import escape
@@ -13,20 +13,6 @@ last_run = 0
 def file_exists_exact(filename):
     files = os.listdir(".")
     return filename in files
-# Lệnh start: Chào mừng và hướng dẫn sử dụng.
-@bot.message_handler(commands=["start"])
-def start(message):
-    if message.chat.id != ADMIN_ID:
-        return
-    bot.reply_to(
-        message,
-        "Chào mừng! Đây là Agent Bot điều khiển máy tính từ xa.\n\n"
-        "Các lệnh hỗ trợ:\n"
-        "/ping - Kiểm tra nhanh kết nối\n"
-        "/run <tên_file.py> - Thực thi một file Python\n"
-        "/start - Hiển thị hướng dẫn này\n"
-        "/log - Xem 20 dòng log gần nhất"
-    )
 # Lệnh log, xem 20 dòng  log cuối cùng.
 @bot.message_handler(commands=['log'])
 def show_log(message):
