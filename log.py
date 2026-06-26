@@ -1,5 +1,8 @@
 import logging
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
+
 # Đường dẫn đến tập tin log
 LOG_FILE = Path("temp/agent.log")
 # Số dòng log
@@ -22,6 +25,4 @@ logging.basicConfig(
     filename=str(LOG_FILE),
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s"
-)
-
-logger = logging.getLogger(__name__)
+)

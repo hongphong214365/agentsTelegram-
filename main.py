@@ -1,10 +1,10 @@
 import telebot
 from config import TOKEN, ADMIN_ID
 from runner import run_python
-from log import logger, get_last_logs
 from handlers    import register_handlers
 import time
 import os
+from log import logger
 from html import escape
 
 bot = telebot.TeleBot(TOKEN)
@@ -13,17 +13,6 @@ last_run = 0
 def file_exists_exact(filename):
     files = os.listdir(".")
     return filename in files
-# Lệnh log, xem 20 dòng  log cuối cùng.
-@bot.message_handler(commands=['log'])
-def show_log(message):
-    if message.chat.id != ADMIN_ID:
-        return
-    logs = get_last_logs()
-    bot.reply_to(
-        message,
-        f"<pre>{escape(logs)}</pre>",
-        parse_mode="HTML"
-    )
 # Lệnh run: Chạy file python, hàm cốt lõi của bot.
 @bot.message_handler(commands=['run'])
 def run_file(message):
@@ -76,7 +65,7 @@ def run_file(message):
         else:
             bot.reply_to(
             message,
-            F"<pre>{escape(out[-3000:])}</pre>",
+            f"<pre>{escape(out[-3000:])}</pre>",
             parse_mode="HTML"
         )
     except Exception as e:
@@ -84,4 +73,4 @@ def run_file(message):
         bot.reply_to(message, str(e))
 print("Telegram agent started successfully.")
 logger.info("bot started")
-bot.infinity_polling()
+bot.infinity_polling() 
