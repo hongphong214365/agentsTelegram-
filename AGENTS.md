@@ -127,11 +127,19 @@ Sau khi AI sửa mã nguồn:
 
 ## Cấu trúc dự án hiện tại
 
+Luôn cập nhật theo cây thư mục thực tế của repo. Nếu chưa xác minh được thay đổi mới nhất, ưu tiên thêm `TODO` ngắn thay vì tự suy đoán.
+
 agent/
 ├── main.py
 ├── config.py
 ├── runner.py
 ├── log.py
+├── handlers/
+│   ├── __init__.py
+│   ├── ping.py
+│   ├── log.py
+│   ├── start.py
+│   └── run.py
 ├── Backup/
 └── temp/
 
