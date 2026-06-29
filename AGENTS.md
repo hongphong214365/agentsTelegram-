@@ -272,18 +272,6 @@ Sau khi hoàn thành một yêu cầu:
 2. Đảm bảo chương trình chạy được (nếu có thể kiểm tra).
 3. Đảm bảo các bài kiểm tra liên quan đã thành công.
 4. Tóm tắt ngắn gọn những thay đổi đã thực hiện.
-5. Hỏi người dùng:
-
-   "Bạn có muốn tạo bản sao lưu (backup) không?"
-
-Nếu người dùng trả lời đồng ý (ví dụ: "có", "ok", "yes", "đồng ý"...), hãy chạy:
-
-```text
-FreeFileSync.exe backup.ffs_batch
-```
-
-Không được tự động chạy lệnh backup khi chưa có sự xác nhận của người dùng.
-
 
 ## Thư viện
 
