@@ -1,12 +1,8 @@
 import logging
-from pathlib import Path
+from config import LOG_FILE, LOG_LINES, LEVEL
 
 logger = logging.getLogger(__name__)
 
-# Đường dẫn đến tập tin log
-LOG_FILE = Path("temp/agent.log")
-# Số dòng log
-LOG_LINES = 20
 
 # Hàm xử lí.
 def get_last_logs(lines: int = LOG_LINES) -> str:
@@ -23,6 +19,6 @@ def get_last_logs(lines: int = LOG_LINES) -> str:
 
 logging.basicConfig(
     filename=str(LOG_FILE),
-    level=logging.INFO,
+    level= LEVEL,
     format="%(asctime)s | %(levelname)s | %(message)s"
-)
+)

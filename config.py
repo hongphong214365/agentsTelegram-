@@ -1,8 +1,15 @@
 import os
 import sys
-
+from pathlib import Path
+import logging
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 ADMIN_ID_RAW = os.getenv("TELEGRAM_ADMIN_ID")
+# Đường dẫn đến tập tin log
+LOG_FILE = Path("temp/agent.log")
+# Số dòng log
+LOG_LINES = 20
+# Cấp độ ghi log.
+LEVEL=logging.INFO
 
 if not TOKEN:
     sys.exit("Lỗi: Chưa cấu hình biến môi trường 'TELEGRAM_TOKEN'.")
