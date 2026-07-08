@@ -10,7 +10,8 @@ LOG_FILE = Path("temp/agent.log")
 LOG_LINES = 20
 # Cấp độ ghi log.
 LEVEL=logging.INFO
-
+# Giới hạn thời gian chạy.
+run_timeout=30
 if not TOKEN:
     sys.exit("Lỗi: Chưa cấu hình biến môi trường 'TELEGRAM_TOKEN'.")
 
