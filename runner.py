@@ -1,6 +1,8 @@
 import subprocess
 import os
 from config import run_timeout
+
+
 def run_python(file_name):
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
@@ -14,4 +16,3 @@ def run_python(file_name):
         timeout=run_timeout,
     )
     return result.stdout, result.stderr
-
