@@ -1,5 +1,7 @@
 import subprocess
 import os
+from config import run_timeout
+
 
 def run_python(file_name):
     env = os.environ.copy()
@@ -11,7 +13,6 @@ def run_python(file_name):
         encoding="utf-8",
         errors="replace",
         env=env,
-        timeout=30,
+        timeout=run_timeout,
     )
     return result.stdout, result.stderr
-
