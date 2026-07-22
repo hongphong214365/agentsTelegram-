@@ -1,5 +1,5 @@
 import telebot
-from config import ADMIN_ID
+from config import ADMIN_ID, RUN_TIMEOUT
 
 
 def register_status(bot: telebot.TeleBot):
@@ -10,5 +10,8 @@ def register_status(bot: telebot.TeleBot):
             return
         bot.reply_to(
             message,
-            "🤖  bot đang hoạt động.",
+            (
+                "🤖 bot đang hoạt động.\n"
+                f"File sẽ timeout sau: {RUN_TIMEOUT} giây"
+            ),
         )

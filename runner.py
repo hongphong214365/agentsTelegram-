@@ -1,6 +1,6 @@
 import subprocess
 import os
-from config import run_timeout
+from config import RUN_TIMEOUT
 
 
 def run_python(file_name):
